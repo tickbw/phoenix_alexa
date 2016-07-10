@@ -2,90 +2,60 @@ defmodule Alexa.Speech do
 
   defmacro __using__(method) do
     quote do
-      import Alexa.Speech
+      import Alexa.{Speech, Response}
+      alias Alexa.{Request, Response, TextOutputSpeech, SsmlOutputSpeech}
+      alias Alexa.{SimpleCard, StandardCard, LinkAccountCard}
+
+      def set_response(conn, status \\ 200, response) do
+        conn
+          |> Plug.Conn.put_resp_content_type("application/json")
+          |> Plug.Conn.resp(status, Poison.encode!(response))
+      end
+
+      def handle_request(conn, request) do
+        case request.request.type do
+          "LaunchRequest" ->
+            launchRequest(conn, request)
+          "IntentRequest" ->
+            intentRequest(conn, request.request.intent.name, request)
+          "SessionEndedRequest" -> 
+            sessionEndedRequest(conn, request)
+              |> set_response(%{})
+        end
+          |> Plug.Conn.send_resp()
+      end
 
       def unquote(method)(conn, params) do
-        request = params["request"]
+        case Poison.Decode.decode(params, as: %Alexa.Request{}) do
+          %Alexa.Request{} = request -> handle_request(conn, request)
+          _ -> 
+            conn
+              |> Plug.Conn.put_resp_content_type("application/json")
+              |> Plug.Conn.send_resp(500, Poison.encode!(%{error: "Internal Error"}))
+        end
 
-        response = case request["type"] do
-          "LaunchRequest" ->
-            launchRequest(params)
-          "IntentRequest" ->
-            intentRequest(request["intent"]["name"], params)
-          "SessionEndedRequest" -> 
-            sessionEndedRequest(params)  
-        end |> log_response
-
-        conn 
-          |> Plug.Conn.put_status(response.status) 
-          |> json response
       end
+
+      def launchRequest(conn, _request) do
+        conn |> set_response(%Response{})
+      end
+
+      def sessionEndedRequest(conn, request) do
+        conn
+      end
+
+      def intentRequest(conn, _, request) do
+        conn |> set_response(%Response{})
+      end
+
+      defoverridable [launchRequest: 2, intentRequest: 3, sessionEndedRequest: 2]
 
     end
   end
 
-  def session_attributes(request) do
-    request["session"]["sessionAttributes"]
-  end
-
-  def response do
-    %{
-      "status": 200,
-      "version": "1.0",
-      "response": %{
-        "outputSpeech": %{
-          "type": "PlainText",
-          "text": ""
-        },
-        "card": %{
-          "type": "Simple",
-          "content": "",
-          "title": ""
-        },
-        "reprompt": %{
-          "outputSpeech": %{
-            "type": "PlainText",
-            "text": ""
-          }
-        },
-        "shouldEndSession": false
-      },
-      "sessionAttributes": %{}
-    }
-  end
-
-  def set_status(response, status) do
-    %{response | "status": status}
-  end
-
-  def set_output_speech(response, text, type \\ "PlainText") do
-    new_resp_field = %{response[:response] | "outputSpeech": %{"type": type, "text": text} }
-    %{response | "response": new_resp_field}
-  end
-
-  def set_card(response, content, title, type \\ "Simple") do
-    new_resp_field = %{response[:response] | "card": %{"type": type, "content": content, "title": title} }
-    %{response | "response": new_resp_field}    
-  end
-
-  def set_reprompt(response, text, type \\ "PlainText") do
-    new_output_speech = %{response[:response][:reprompt] | "outputSpeech": %{"type": type, "text": text} }
-    new_resp_field = %{response[:response] | "reprompt": new_output_speech }
-    %{response | "response": new_resp_field}    
-  end 
-
-  def set_should_end_session(response, value) do
-    new_resp_field = %{ response[:response] | "shouldEndSession": value }
-    %{response | "response": new_resp_field}    
-  end 
-
-  def set_session_attributes(response, session_attributes) do
-    %{response | "sessionAttributes": session_attributes}
-  end
-
-  def log_response(response) do
-    IO.puts "Response = #{inspect response}"
-    response
-  end
+  # def log_response(response) do
+  #   Logger.info "Response = #{inspect response}"
+  #   response
+  # end
 
 end

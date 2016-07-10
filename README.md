@@ -29,18 +29,37 @@ defmodule HelloAlexa.AlexaController do
   use HelloAlexa.Web, :controller
   use Alexa.Speech, :post
 
-  def launchRequest(_params) do
-    response() 
-      |> set_output_speech("Welcome to the programming oracle. Ask me what are the best programming languages.") 
+  def launchRequest(conn, request) do
+    response = %Response{} 
+        |> set_output_speech(%TextOutputSpeech{text: "Welcome to the Horoscope."}) 
+
+    conn
+      |> set_response(response)
   end
 
-  def sessionEndedRequest(_params) do
-    response()   
+  def sessionEndedRequest(conn, request) do
+    conn
   end
 
-  def intentRequest("GetBestLanguages", params) do    
-    response()
-      |> set_output_speech("the best programming languages are Erlang and Elixir.") 
+  def intentRequest(conn, "GetHoroscope", request) do
+    response = case request.request.intent.slots["Sign"]["value"] do
+      "Libra" ->
+        card = %SimpleCard{}
+          |> SimpleCard.set_title("Get Horoscope")
+          |> SimpleCard.set_content("You are going to have an unexpected event today.")
+
+        %Response{} 
+          |> set_output_speech(%TextOutputSpeech{text: "You are going to have an unexpected event today."}) 
+          |> set_card(card)
+          |> set_session_attributes(%{my_key: "my_data"})
+          |> set_should_end_session(true)
+      _ ->
+        %Response{} 
+          |> set_output_speech(%TextOutputSpeech{text: "You are going to meet an interesting person."}) 
+          |> set_should_end_session(true)
+    end
+
+    conn |> set_response(response)
   end
 end
 

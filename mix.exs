@@ -6,7 +6,7 @@ defmodule Alexa.Mixfile do
   def project do
     [app: :alexa,
      version: @version,
-     elixir: "~> 1.0",
+     elixir: "~> 1.2",
      description: "Alexa library for Phoenix",
      deps: deps,
      package: package,
@@ -30,7 +30,9 @@ defmodule Alexa.Mixfile do
   #
   # Type `mix help deps` for more examples and options
   defp deps do
-    []
+    [{:poison, "~> 2.0"},
+     {:plug, "~> 1.1"},
+    ]
   end
 
   defp package do
