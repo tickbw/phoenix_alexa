@@ -2,7 +2,7 @@
 
 ## Usage
 
-Add Alexa as a dependency in your `mix.exs` file.
+Add phoenix_alexa as a dependency in your `mix.exs` file.
 
 ```elixir
 def deps do
