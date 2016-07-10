@@ -13,22 +13,10 @@ defmodule PhoenixAlexa.Mixfile do
      consolidate_protocols: Mix.env != :test]
   end
 
-  # Configuration for the OTP application
-  #
-  # Type `mix help compile.app` for more information
   def application do
     [applications: []]
   end
 
-  # Dependencies can be hex.pm packages:
-  #
-  #   {:mydep, "~> 0.3.0"}
-  #
-  # Or git/path repositories:
-  #
-  #   {:mydep, git: "https://github.com/elixir-lang/mydep.git", tag: "0.1"}
-  #
-  # Type `mix help deps` for more examples and options
   defp deps do
     [{:poison, "~> 2.0"},
      {:plug, "~> 1.1"},
@@ -36,7 +24,7 @@ defmodule PhoenixAlexa.Mixfile do
   end
 
   defp package do
-    [files: ~w(lib test mix.exs README.md LICENSE UNLICENSE VERSION),
+    [files: ~w(lib test mix.exs README.md LICENSE VERSION),
      maintainers: ["Gabi Zuniga"],
      licenses: ["MIT"],
      links: %{"GitHub" => "https://github.com/gabiz/phoenix_alexa"}]
