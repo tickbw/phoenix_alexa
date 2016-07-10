@@ -4,7 +4,7 @@ defmodule PhoenixAlexa.Mixfile do
   @version File.read!("VERSION") |> String.strip
 
   def project do
-    [app: :alexa,
+    [app: :phoenix_alexa,
      version: @version,
      elixir: "~> 1.2",
      description: "Alexa library for Phoenix",
