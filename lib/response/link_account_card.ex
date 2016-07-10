@@ -1,5 +1,5 @@
-defmodule Alexa.LinkAccountCard do
-  alias Alexa.LinkAccountCard
+defmodule PhoenixAlexa.LinkAccountCard do
+  alias PhoenixAlexa.LinkAccountCard
 
   defstruct type: "LinkAccount",
             title: nil,

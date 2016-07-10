@@ -1,5 +1,5 @@
-defmodule Alexa.IntentRequest do
-  alias Alexa.Intent
+defmodule PhoenixAlexa.IntentRequest do
+  alias PhoenixAlexa.Intent
   
   defstruct type: "IntentRequest",
             requestId: "",

@@ -1,4 +1,4 @@
-defmodule Alexa.TextOutputSpeech do
+defmodule PhoenixAlexa.TextOutputSpeech do
   
   defstruct type: "PlainText",
             text: nil

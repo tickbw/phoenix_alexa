@@ -1,5 +1,5 @@
-defmodule Alexa.GenericRequest do
-  alias Alexa.Intent
+defmodule PhoenixAlexa.GenericRequest do
+  alias PhoenixAlexa.Intent
 
   defstruct type: nil,
             requestId: nil,

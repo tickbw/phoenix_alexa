@@ -1,8 +1,8 @@
-defmodule Alexa.ResponseTest do
+defmodule PhoenixAlexa.ResponseTest do
   use ExUnit.Case
-  alias Alexa.{Response, TextOutputSpeech, SsmlOutputSpeech}
-  alias Alexa.{SimpleCard, StandardCard, LinkAccountCard}
-  import Alexa.Response
+  alias PhoenixAlexa.{Response, TextOutputSpeech, SsmlOutputSpeech}
+  alias PhoenixAlexa.{SimpleCard, StandardCard, LinkAccountCard}
+  import PhoenixAlexa.Response
 
   test "empty response" do
     response = %Response{}

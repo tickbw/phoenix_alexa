@@ -1,12 +1,9 @@
-defmodule Alexa.Request do
+defmodule PhoenixAlexa.Request do
   
-  alias Alexa.{Session, GenericRequest, Request}
+  alias PhoenixAlexa.{Session, GenericRequest}
 
   defstruct version: "",
             session: %Session{},
             request: %GenericRequest{}
 
-  # def validate(request) do
-    
-  # end
 end

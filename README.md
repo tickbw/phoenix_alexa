@@ -6,7 +6,7 @@ Add Alexa as a dependency in your `mix.exs` file.
 
 ```elixir
 def deps do
-  [ { :alexa, git: "https://github.com/gabiz/alexa" } ]
+  [ { :phoenix_alexa, "~> 0.1.0" } ]
 end
 ```
 
@@ -21,13 +21,13 @@ Update a route with a post request into your alexa controller.
 
 ```
 
-In the controller add a use statement for `Alexa.Speech` and define functions for `launchRequest`, `sessionEndRequest` and `intentRequest` as follows:
+In the controller add a use statement for `PhoenixAlexa.Controller` and define functions for `launchRequest`, `sessionEndRequest` and `intentRequest` as follows:
 
 ```elixir
 
-defmodule HelloAlexa.AlexaController do
-  use HelloAlexa.Web, :controller
-  use Alexa.Speech, :post
+defmodule HelloPhoenixAlexa.AlexaController do
+  use HelloPhoenixAlexa.Web, :controller
+  use PhoenixAlexa.Controller, :post  # param should match route name
 
   def launchRequest(conn, request) do
     response = %Response{} 
@@ -65,3 +65,11 @@ end
 
 ```
 
+To authenticate that the request corresponds to your Alexa application add the ValidateApplicationId plug to your router as follows:
+
+```elixir
+  pipeline :api do
+    plug :accepts, ["json"]
+    plug ValidateApplicationId, "amzn1.echo-sdk-ams.app.05dcb1a4-cb45-46c5-a30e-bb3033a0770a"
+  end
+```

@@ -1,4 +1,4 @@
-defmodule Alexa.SsmlOutputSpeech do
+defmodule PhoenixAlexa.SsmlOutputSpeech do
   
   defstruct type: "SSML",
             ssml: nil

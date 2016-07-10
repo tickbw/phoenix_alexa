@@ -1,5 +1,5 @@
-defmodule Alexa.SimpleCard do
-  alias Alexa.SimpleCard
+defmodule PhoenixAlexa.SimpleCard do
+  alias PhoenixAlexa.SimpleCard
 
   defstruct type: "Simple",
             title: nil,

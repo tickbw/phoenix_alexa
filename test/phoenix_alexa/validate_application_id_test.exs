@@ -1,8 +1,8 @@
-defmodule Alexa.ValidateApplicationIdTest do
+defmodule PhoenixAlexa.ValidateApplicationIdTest do
   use ExUnit.Case
   use Plug.Test
 
-  alias Alexa.ValidateApplicationId
+  alias PhoenixAlexa.ValidateApplicationId
 
   test "valid application id" do
     conn = conn(:post, "/alexa", "%{}")

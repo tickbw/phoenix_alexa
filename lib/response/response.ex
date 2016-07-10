@@ -1,6 +1,6 @@
-defmodule Alexa.Response do
-  alias Alexa.{Response, TextOutputSpeech, SsmlOutputSpeech}
-  alias Alexa.{SimpleCard, StandardCard, LinkAccountCard}
+defmodule PhoenixAlexa.Response do
+  alias PhoenixAlexa.{Response, TextOutputSpeech, SsmlOutputSpeech}
+  alias PhoenixAlexa.{SimpleCard, StandardCard, LinkAccountCard}
 
   defstruct version: "1.0",
             sessionAttributes: %{},

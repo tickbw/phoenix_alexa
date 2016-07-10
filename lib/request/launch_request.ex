@@ -1,4 +1,4 @@
-defmodule Alexa.LaunchRequest do
+defmodule PhoenixAlexa.LaunchRequest do
   
   defstruct type: "LaunchRequest",
             requestId: "",

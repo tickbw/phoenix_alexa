@@ -1,4 +1,4 @@
-defmodule Alexa.Intent do
+defmodule PhoenixAlexa.Intent do
 
   defstruct name: nil,
             slots: %{}

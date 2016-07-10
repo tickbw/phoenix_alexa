@@ -1,4 +1,4 @@
-defmodule Alexa.User do
+defmodule PhoenixAlexa.User do
   
   defstruct userId: "",
             accessToken: ""

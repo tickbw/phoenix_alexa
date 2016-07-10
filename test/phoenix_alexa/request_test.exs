@@ -1,7 +1,7 @@
-defmodule Alexa.RequestTest do
+defmodule PhoenixAlexa.RequestTest do
   use ExUnit.Case
 
-  alias Alexa.{Session, IntentRequest}
+  alias PhoenixAlexa.{Session, IntentRequest}
 
   test "session" do
     json_session = """

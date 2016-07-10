@@ -1,4 +1,4 @@
-defmodule Alexa.SessionEndedRequest do
+defmodule PhoenixAlexa.SessionEndedRequest do
   
   defstruct type: "SessionEndedRequest",
             requestId: nil,

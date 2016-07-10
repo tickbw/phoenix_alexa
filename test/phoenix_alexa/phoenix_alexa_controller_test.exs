@@ -1,9 +1,9 @@
-defmodule Alexa.SpeechTest do
+defmodule PhoenixAlexa.ControllerTest do
   use ExUnit.Case
   use Plug.Test
 
   defmodule HoroscopeController do
-    use Alexa.Speech, :post
+    use PhoenixAlexa.Controller, :post
 
     def launchRequest(conn, request) do
       assert request.version == "1.0"

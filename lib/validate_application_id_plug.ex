@@ -1,4 +1,4 @@
-defmodule Alexa.ValidateApplicationId do
+defmodule PhoenixAlexa.ValidateApplicationId do
   import Plug.Conn
 
   def init(applicationId), do: applicationId

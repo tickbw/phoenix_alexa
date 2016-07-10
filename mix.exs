@@ -1,4 +1,4 @@
-defmodule Alexa.Mixfile do
+defmodule PhoenixAlexa.Mixfile do
   use Mix.Project
 
   @version File.read!("VERSION") |> String.strip
@@ -36,9 +36,9 @@ defmodule Alexa.Mixfile do
   end
 
   defp package do
-    [files: ~w(lib mix.exs README.md LICENSE UNLICENSE VERSION),
+    [files: ~w(lib test mix.exs README.md LICENSE UNLICENSE VERSION),
      maintainers: ["Gabi Zuniga"],
-     licenses: ["Unlicense"],
-     links: %{"GitHub" => "https://github.com/gabiz/alexa"}]
+     licenses: ["MIT"],
+     links: %{"GitHub" => "https://github.com/gabiz/phoenix_alexa"}]
   end
 end

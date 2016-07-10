@@ -1,10 +1,10 @@
-defmodule Alexa.Speech do
+defmodule PhoenixAlexa.Controller do
 
   defmacro __using__(method) do
     quote do
-      import Alexa.{Speech, Response}
-      alias Alexa.{Request, Response, TextOutputSpeech, SsmlOutputSpeech}
-      alias Alexa.{SimpleCard, StandardCard, LinkAccountCard}
+      import PhoenixAlexa.{Controller, Response}
+      alias PhoenixAlexa.{Request, Response, TextOutputSpeech, SsmlOutputSpeech}
+      alias PhoenixAlexa.{SimpleCard, StandardCard, LinkAccountCard}
 
       def set_response(conn, status \\ 200, response) do
         conn
@@ -26,8 +26,8 @@ defmodule Alexa.Speech do
       end
 
       def unquote(method)(conn, params) do
-        case Poison.Decode.decode(params, as: %Alexa.Request{}) do
-          %Alexa.Request{} = request -> handle_request(conn, request)
+        case Poison.Decode.decode(params, as: %PhoenixAlexa.Request{}) do
+          %PhoenixAlexa.Request{} = request -> handle_request(conn, request)
           _ -> 
             conn
               |> Plug.Conn.put_resp_content_type("application/json")
@@ -52,10 +52,5 @@ defmodule Alexa.Speech do
 
     end
   end
-
-  # def log_response(response) do
-  #   Logger.info "Response = #{inspect response}"
-  #   response
-  # end
 
 end

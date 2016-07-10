@@ -1,4 +1,4 @@
-defmodule Alexa.Application do
+defmodule PhoenixAlexa.Application do
   
   defstruct applicationId: ""
 end
