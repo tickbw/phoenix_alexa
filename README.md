@@ -23,7 +23,7 @@ Update a route with a post request into your alexa controller.
 
 ```
 
-In the controller add a use statement for `PhoenixAlexa.Controller` and define functions for `launchRequest`, `sessionEndRequest` and `intentRequest` as follows:
+In the controller add a use statement for `PhoenixAlexa.Controller` and define functions for `launch_request`, `session_end_request` and `intent_request` as follows:
 
 ```elixir
 
@@ -31,7 +31,7 @@ defmodule HelloPhoenixAlexa.AlexaController do
   use HelloPhoenixAlexa.Web, :controller
   use PhoenixAlexa.Controller, :post  # param should match route name
 
-  def launchRequest(conn, request) do
+  def launch_request(conn, request) do
     response = %Response{} 
         |> set_output_speech(%TextOutputSpeech{text: "Welcome to the Horoscope."}) 
 
@@ -39,16 +39,16 @@ defmodule HelloPhoenixAlexa.AlexaController do
       |> set_response(response)
   end
 
-  def sessionEndedRequest(conn, request) do
+  def session_end_request(conn, request) do
     conn
   end
 
-  def intentRequest(conn, "GetHoroscope", request) do
+  def intent_request(conn, "GetHoroscope", request) do
     response = case request.request.intent.slots["Sign"]["value"] do
       "Libra" ->
         card = %SimpleCard{}
-          |> SimpleCard.set_title("Get Horoscope")
-          |> SimpleCard.set_content("You are going to have an unexpected event today.")
+          |> set_title("Get Horoscope")
+          |> set_content("You are going to have an unexpected event today.")
 
         %Response{} 
           |> set_output_speech(%TextOutputSpeech{text: "You are going to have an unexpected event today."}) 
