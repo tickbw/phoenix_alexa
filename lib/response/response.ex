@@ -45,4 +45,36 @@ defmodule PhoenixAlexa.Response do
   def set_should_end_session(response, shouldEndSession) do
     %Response{response | response: %{response.response | shouldEndSession: shouldEndSession}}
   end
+
+  # Card helpers
+
+  def set_title(%SimpleCard{} = card, title) do
+    SimpleCard.set_title(card, title)    
+  end
+  def set_title(%StandardCard{} = card, title) do
+    StandardCard.set_title(card, title)
+  end
+  def set_title(%LinkAccountCard{} = card, title) do
+    LinkAccountCard.set_title(card, title)
+  end
+
+  def set_content(%SimpleCard{} = card, content) do
+    SimpleCard.set_content(card, content)
+  end
+  def set_content(%LinkAccountCard{} = card, content) do
+    LinkAccountCard.set_content(card, content)
+  end
+
+  def set_text(%StandardCard{} = card, text) do
+    StandardCard.set_text(card, text)
+  end
+
+  def set_small_image_url(%StandardCard{} = card, image_url) do
+    StandardCard.set_small_image_url(card, image_url)
+  end
+
+  def set_large_image_url(%StandardCard{} = card, image_url) do
+    StandardCard.set_large_image_url(card, image_url)
+  end
+
 end

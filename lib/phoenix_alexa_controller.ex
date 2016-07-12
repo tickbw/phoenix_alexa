@@ -15,11 +15,11 @@ defmodule PhoenixAlexa.Controller do
       def handle_request(conn, request) do
         case request.request.type do
           "LaunchRequest" ->
-            launchRequest(conn, request)
+            launch_request(conn, request)
           "IntentRequest" ->
-            intentRequest(conn, request.request.intent.name, request)
+            intent_request(conn, request.request.intent.name, request)
           "SessionEndedRequest" -> 
-            sessionEndedRequest(conn, request)
+            session_ended_request(conn, request)
               |> set_response(%{})
         end
           |> Plug.Conn.send_resp()
@@ -36,19 +36,19 @@ defmodule PhoenixAlexa.Controller do
 
       end
 
-      def launchRequest(conn, _request) do
+      def launch_request(conn, _request) do
         conn |> set_response(%Response{})
       end
 
-      def sessionEndedRequest(conn, request) do
+      def session_ended_request(conn, request) do
         conn
       end
 
-      def intentRequest(conn, _, request) do
+      def intent_request(conn, _, request) do
         conn |> set_response(%Response{})
       end
 
-      defoverridable [launchRequest: 2, intentRequest: 3, sessionEndedRequest: 2]
+      defoverridable [launch_request: 2, intent_request: 3, session_ended_request: 2]
 
     end
   end

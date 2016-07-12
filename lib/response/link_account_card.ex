@@ -2,8 +2,8 @@ defmodule PhoenixAlexa.LinkAccountCard do
   alias PhoenixAlexa.LinkAccountCard
 
   defstruct type: "LinkAccount",
-            title: nil,
-            content: nil
+            title: "",
+            content: ""
 
   def set_title(card, title) do
     %LinkAccountCard{card | title: title}

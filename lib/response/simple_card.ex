@@ -2,8 +2,8 @@ defmodule PhoenixAlexa.SimpleCard do
   alias PhoenixAlexa.SimpleCard
 
   defstruct type: "Simple",
-            title: nil,
-            content: nil
+            title: "",
+            content: ""
 
   def set_title(card, title) do
     %SimpleCard{card | title: title}

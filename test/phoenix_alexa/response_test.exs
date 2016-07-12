@@ -54,7 +54,6 @@ defmodule PhoenixAlexa.ResponseTest do
   end
 
   test "set_card with SimpleCard" do
-    import SimpleCard
     card = %SimpleCard{}
       |> set_title("Title")
       |> set_content("Content")
@@ -77,7 +76,6 @@ defmodule PhoenixAlexa.ResponseTest do
   end
 
   test "set_card with StandardCard" do
-    import StandardCard
     card = %StandardCard{}
       |> set_title("Title")
       |> set_text("Text")
@@ -105,8 +103,29 @@ defmodule PhoenixAlexa.ResponseTest do
     }
   end
 
+  test "set_card with StandardCard no images" do
+    card = %StandardCard{}
+      |> set_title("Title")
+      |> set_text("Text")
+    response = %Response{}
+      |> set_card(card)
+      |> Poison.encode!
+      |> Poison.decode!
+    assert response == %{
+      "response" => %{
+        "card" => %{
+          "text" => "Text", 
+          "title" => "Title",
+          "type" => "Standard"
+        }, 
+        "shouldEndSession" => false
+      },
+      "sessionAttributes" => %{},
+      "version" => "1.0"
+    }
+  end
+
   test "set_card with LinkAccountCard" do
-    import LinkAccountCard
     card = %LinkAccountCard{}
       |> set_title("Title")
       |> set_content("Content")

@@ -5,7 +5,7 @@ defmodule PhoenixAlexa.ControllerTest do
   defmodule HoroscopeController do
     use PhoenixAlexa.Controller, :post
 
-    def launchRequest(conn, request) do
+    def launch_request(conn, request) do
       assert request.version == "1.0"
       assert request.session.new == false
       assert request.session.sessionId == "SessionId.80ef8951-172e-4f02-ace8-a7ec847e2d9f"
@@ -23,7 +23,7 @@ defmodule PhoenixAlexa.ControllerTest do
         |> set_response(response)
     end
 
-    def sessionEndedRequest(conn, request) do
+    def session_ended_request(conn, request) do
       assert request.version == "1.0"
       assert request.session.new == false
       assert request.session.sessionId == "SessionId.80ef8951-172e-4f02-ace8-a7ec847e2d9f"
@@ -38,7 +38,7 @@ defmodule PhoenixAlexa.ControllerTest do
       conn
     end
 
-    def intentRequest(conn, "GetHoroscope", request) do
+    def intent_request(conn, "GetHoroscope", request) do
       assert request.version == "1.0"
       assert request.session.new == false
       assert request.session.sessionId == "SessionId.80ef8951-172e-4f02-ace8-a7ec847e2d9f"
