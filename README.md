@@ -1,5 +1,7 @@
 # Alexa library for Phoenix
 
+[![Build Status](https://api.travis-ci.org/gabiz/phoenix_alexa.svg)](https://travis-ci.org/gabiz/phoenix_alexa)
+
 ## Usage
 
 Add phoenix_alexa as a dependency in your `mix.exs` file.
