@@ -5,6 +5,7 @@ defmodule PhoenixAlexa.Controller do
       import PhoenixAlexa.{Controller, Response}
       alias PhoenixAlexa.{Request, Response, TextOutputSpeech, SsmlOutputSpeech}
       alias PhoenixAlexa.{SimpleCard, StandardCard, LinkAccountCard}
+      alias PhoenixAlexa.{CanFulfillIntent}
 
       def set_response(conn, status \\ 200, response) do
         conn
