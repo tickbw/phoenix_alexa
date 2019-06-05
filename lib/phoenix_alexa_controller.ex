@@ -17,7 +17,7 @@ defmodule PhoenixAlexa.Controller do
           "LaunchRequest" ->
             launch_request(conn, request)
           "CanFulfillIntentRequest" ->
-            can_fulfill_intent_request(conn, request.request.intent.name, request)
+            can_fulfill_intent_request(conn, request.request.type, request)
           "IntentRequest" ->
             intent_request(conn, request.request.intent.name, request)
           "SessionEndedRequest" ->
