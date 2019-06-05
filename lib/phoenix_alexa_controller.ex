@@ -54,7 +54,7 @@ defmodule PhoenixAlexa.Controller do
         conn |> set_response(%Response{})
       end
 
-      defoverridable [launch_request: 2, intent_request: 3, can_full_intent_request: 3, session_ended_request: 2]
+      defoverridable [launch_request: 2, intent_request: 3, can_fulfill_intent_request: 3, session_ended_request: 2]
 
     end
   end
