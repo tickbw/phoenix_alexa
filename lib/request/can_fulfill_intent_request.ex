@@ -1,5 +1,5 @@
 defmodule PhoenixAlexa.CanFulfillIntentRequest do
-  alias PhoenixAlexa.CanFulfillIntent
+  alias PhoenixAlexIntent
 
   defstruct type: "CanFulfillIntentRequest",
     requestId: "",

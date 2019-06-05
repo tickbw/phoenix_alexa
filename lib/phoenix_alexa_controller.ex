@@ -16,7 +16,7 @@ defmodule PhoenixAlexa.Controller do
         case request.request.type do
           "LaunchRequest" ->
             launch_request(conn, request)
-          "CanFulfullIntentRequest" ->
+          "CanFulfillIntentRequest" ->
             can_fulfill_intent_request(conn, request.request.intent.name, request)
           "IntentRequest" ->
             intent_request(conn, request.request.intent.name, request)
