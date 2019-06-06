@@ -1,13 +1,12 @@
 defmodule PhoenixAlexa.Response do
   alias PhoenixAlexa.{Response, TextOutputSpeech, SsmlOutputSpeech}
   alias PhoenixAlexa.{SimpleCard, StandardCard, LinkAccountCard}
-  alias PhoenixAlexa.{CanFulfillIntent}
 
   defstruct version: "1.0",
-            sessionAttributes: %{},
-            response: %{
-              shouldEndSession: false
-            }
+    sessionAttributes: %{},
+    response: %{
+      shouldEndSession: false
+    }
 
   # def session_attributes(response) do
   #   response[:sessionAttributes]
@@ -41,10 +40,6 @@ defmodule PhoenixAlexa.Response do
   end
   def set_reprompt(response, %SsmlOutputSpeech{} = outputspeech) do
     %Response{response | response: (response.response |> Map.put(:reprompt, %{outputSpeech: outputspeech}))}
-  end
-
-  def set_can_fulfill_intent(response, %CanFulfillIntent{} = canfulfill) do
-    %Response{response | response: (response.response |> Map.put(:canFulfillIntent, canfulfill))}
   end
 
   def set_should_end_session(response, shouldEndSession) do

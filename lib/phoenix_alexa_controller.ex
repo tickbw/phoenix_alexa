@@ -3,6 +3,7 @@ defmodule PhoenixAlexa.Controller do
   defmacro __using__(method) do
     quote do
       import PhoenixAlexa.{Controller, Response}
+      import PhoenixAlexa.{CanFulfillIntentResponse}
       alias PhoenixAlexa.{Request, Response, TextOutputSpeech, SsmlOutputSpeech}
       alias PhoenixAlexa.{SimpleCard, StandardCard, LinkAccountCard}
       alias PhoenixAlexa.{CanFulfillIntent}
